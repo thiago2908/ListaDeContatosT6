@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Text;
 namespace ListaDeContatos
 {
     public partial class Form1 : Form
@@ -41,13 +42,31 @@ namespace ListaDeContatos
         {
             StreamReader ler = new StreamReader("contatos.ter");
 
-            listaDeContatos = new Contato[Covert.ToInt32(ler.ReadLine())];
-        }
+            listadecontatos = new Contato[Convert.ToInt32(ler.ReadLine())];
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+            for (int x = 0; x < listadecontatos.Length; x++)
+            {
+                listadecontatos[x] = new Contato();
+                listadecontatos[x].Nome = ler.ReadLine();
+                listadecontatos[x].Sobrenome = ler.ReadLine();
+            }
+            ler.Close();
+        }
+        private void Exibir()
         {
+            listBox1.Items.Clear();
 
-        }
+            for (int x = 0; x < listadecontatos.Length; x++)
+            {
+                listBox1.Items.Add(listadecontatos[x].ToString());
+
+            }
+
+            private void limparCampos()
+            {
+                textBox1
+            }
+
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
